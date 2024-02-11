@@ -1,6 +1,7 @@
 local addonName = "Simple Chromatic Aberration Filter"
 
-local pp_scaf = CreateClientConVar( "pp_scaf", "0", false, false, "Enable/Disable chromatic aberration filter.", 0, 1 )
+-- ---------------------------------------------------v  set true=Allow ConVar saving, false=the opposite
+local pp_scaf = CreateClientConVar( "pp_scaf", "0", true, false, "Enable/Disable chromatic aberration filter.", 0, 1 )
 local pp_scaf_intensity = CreateClientConVar( "pp_scaf_intensity", "2", true, false, "How intense the chromatic aberration will be.", 0, 100 )
 
 local pp_scaf_redx = CreateClientConVar( "pp_scaf_redx", "8", true, false, "Mixing of chromatic aberrations in the red channel along the X-axis. <Default 8>", 0, 100 )
