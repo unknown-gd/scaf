@@ -9,8 +9,8 @@ local pp_scaf_redy = CreateClientConVar( "pp_scaf_redy", "4", true, false, "Mixi
 local pp_scaf_greenx = CreateClientConVar( "pp_scaf_greenx", "4", true, false, "Mixing of chromatic aberrations in the green channel along the X-axis. <Default 4>", 0, 100 )
 local pp_scaf_greeny = CreateClientConVar( "pp_scaf_greeny", "2", true, false, "Mixing of chromatic aberrations in the green channel along the Y-axis. <Default 2>", 0, 100 )
 
-local pp_scaf_bluey = CreateClientConVar( "pp_scaf_bluey", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the Y-axis. <Default 0>", 0, 100 )
 local pp_scaf_bluex = CreateClientConVar( "pp_scaf_bluex", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the X-axis. <Default 0>", 0, 100 )
+local pp_scaf_bluey = CreateClientConVar( "pp_scaf_bluey", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the Y-axis. <Default 0>", 0, 100 )
 
 list.Set( "PostProcess", "#pp_scaf.name", {
 	["icon"] = "gui/postprocess/scaf.jpg",
