@@ -1,16 +1,16 @@
 local addonName = "Simple Chromatic Aberration Filter"
 
 local pp_scaf = CreateClientConVar( "pp_scaf", "0", false, false, "Enable/Disable chromatic aberration filter.", 0, 1 )
-local pp_scaf_intensity = CreateClientConVar( "pp_scaf_intensity", "2", true, false, "How intense the chromatic aberration will be.", 0, 10 )
+local pp_scaf_intensity = CreateClientConVar( "pp_scaf_intensity", "2", true, false, "How intense the chromatic aberration will be.", 0, 100 )
 
-local pp_scaf_redx = CreateClientConVar( "pp_scaf_redx", "8", true, false, "Mixing of chromatic aberrations in the red channel along the X-axis.", 0, 10 )
-local pp_scaf_redy = CreateClientConVar( "pp_scaf_redy", "4", true, false, "Mixing of chromatic aberrations in the red channel along the Y-axis.", 0, 10 )
+local pp_scaf_redx = CreateClientConVar( "pp_scaf_redx", "8", true, false, "Mixing of chromatic aberrations in the red channel along the X-axis. <Default 8>", 0, 100 )
+local pp_scaf_redy = CreateClientConVar( "pp_scaf_redy", "4", true, false, "Mixing of chromatic aberrations in the red channel along the Y-axis. <Default 4>", 0, 100 )
 
-local pp_scaf_greenx = CreateClientConVar( "pp_scaf_greenx", "4", true, false, "Mixing of chromatic aberrations in the green channel along the X-axis.", 0, 10 )
-local pp_scaf_greeny = CreateClientConVar( "pp_scaf_greeny", "2", true, false, "Mixing of chromatic aberrations in the green channel along the Y-axis.", 0, 10 )
+local pp_scaf_greenx = CreateClientConVar( "pp_scaf_greenx", "4", true, false, "Mixing of chromatic aberrations in the green channel along the X-axis. <Default 4>", 0, 100 )
+local pp_scaf_greeny = CreateClientConVar( "pp_scaf_greeny", "2", true, false, "Mixing of chromatic aberrations in the green channel along the Y-axis. <Default 2>", 0, 100 )
 
-local pp_scaf_bluey = CreateClientConVar( "pp_scaf_bluey", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the Y-axis.", 0, 10 )
-local pp_scaf_bluex = CreateClientConVar( "pp_scaf_bluex", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the X-axis.", 0, 10 )
+local pp_scaf_bluey = CreateClientConVar( "pp_scaf_bluey", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the Y-axis. <Default 0>", 0, 100 )
+local pp_scaf_bluex = CreateClientConVar( "pp_scaf_bluex", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the X-axis. <Default 0>", 0, 100 )
 
 list.Set( "PostProcess", "#pp_scaf.name", {
 	["icon"] = "gui/postprocess/scaf.jpg",
