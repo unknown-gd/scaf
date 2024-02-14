@@ -14,6 +14,12 @@ local pp_scaf_greeny = CreateClientConVar( "pp_scaf_greeny", "2", true, false, "
 local pp_scaf_bluex = CreateClientConVar( "pp_scaf_bluex", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the X-axis.", 0, 128 )
 local pp_scaf_bluey = CreateClientConVar( "pp_scaf_bluey", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the Y-axis.", 0, 128 )
 
+-- brightness options
+local pp_scaf_autoexposure_min = CreateClientConVar ( "pp_scaf_autoexposure_min", "0", true, false, "Sets HDR Auto Exposure Minimum. <Default 0>", 0, 10 )
+local pp_scaf_autoexposure_max = CreateClientConVar ( "pp_scaf_autoexposure_max", "1.25", true, false, "Sets HDR Auto Exposure Maximum. <Default 2>", 0, 10 )
+local pp_scaf_bloom_scalefactor = CreateClientConVar ( "pp_scaf_bloom_scalefactor", "0.2", true, false, "Sets Bloom Scalefactor Scalar. <Default 1>", 0, 1 )
+local pp_scaf_bloomscale = CreateClientConVar ( "pp_scaf_bloomscale", "0", true, false, "Sets Bloom Scale. <Default 1>", 0, 1 )
+
 list.Set( "PostProcess", "#pp_scaf.name", {
 	["icon"] = "gui/postprocess/scaf.jpg",
 	["convar"] = pp_scaf:GetName(),
@@ -31,7 +37,12 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 					[ pp_scaf_greenx:GetName() ] = pp_scaf_greenx:GetDefault(),
 					[ pp_scaf_greeny:GetName() ] = pp_scaf_greeny:GetDefault(),
 					[ pp_scaf_bluey:GetName() ] = pp_scaf_bluey:GetDefault(),
-					[ pp_scaf_bluex:GetName() ] = pp_scaf_bluex:GetDefault()
+					[ pp_scaf_bluex:GetName() ] = pp_scaf_bluex:GetDefault(),
+					
+					[ pp_scaf_autoexposure_min:GetName() ] = pp_scaf_autoexposure_min:GetDefault(),
+					[ pp_scaf_autoexposure_max:GetName() ] = pp_scaf_autoexposure_max:GetDefault(),
+					[ pp_scaf_bloom_scalefactor:GetName() ] = pp_scaf_bloom_scalefactor:GetDefault(),
+					[ pp_scaf_bloomscale:GetName() ] = pp_scaf_bloomscale:GetDefault()
 				}
 			},
 			["CVars"] = {
@@ -42,7 +53,12 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 				pp_scaf_greenx:GetName(),
 				pp_scaf_greeny:GetName(),
 				pp_scaf_bluey:GetName(),
-				pp_scaf_bluex:GetName()
+				pp_scaf_bluex:GetName(),
+				
+				pp_scaf_autoexposure_min:GetName(),
+				pp_scaf_autoexposure_max:GetName(),
+				pp_scaf_bloom_scalefactor:GetName(),
+				pp_scaf_bloomscale:GetName()
 			}
 		} )
 
@@ -118,6 +134,43 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 			["Type"] = "Float",
 			["Help"] = true
 		} )
+			
+		-- brightness options
+		panel:AddControl( "Slider", {
+			["Label"] = "#pp_scaf.autoexposure_min",
+			["Command"] = pp_scaf_autoexposure_min:GetName(),
+			["Min"] = tostring( pp_scaf_autoexposure_min:GetMin() ),
+			["Max"] = tostring( pp_scaf_autoexposure_min:GetMax() ),
+			["Type"] = "Float",
+			["Help"] = true
+		} )
+		
+		panel:AddControl( "Slider", {
+			["Label"] = "#pp_scaf.autoexposure_max",
+			["Command"] = pp_scaf_autoexposure_max:GetName(),
+			["Min"] = tostring( pp_scaf_autoexposure_max:GetMin() ),
+			["Max"] = tostring( pp_scaf_autoexposure_max:GetMax() ),
+			["Type"] = "Float",
+			["Help"] = true
+		} )
+		
+		panel:AddControl( "Slider", {
+			["Label"] = "#pp_scaf.bloom_scalefactor",
+			["Command"] = pp_scaf_bloom_scalefactor:GetName(),
+			["Min"] = tostring( pp_scaf_bloom_scalefactor:GetMin() ),
+			["Max"] = tostring( pp_scaf_bloom_scalefactor:GetMax() ),
+			["Type"] = "Float",
+			["Help"] = true
+		} )
+		
+		panel:AddControl( "Slider", {
+			["Label"] = "#pp_scaf.bloomscale",
+			["Command"] = pp_scaf_bloomscale:GetName(),
+			["Min"] = tostring( pp_scaf_bloomscale:GetMin() ),
+			["Max"] = tostring( pp_scaf_bloomscale:GetMax() ),
+			["Type"] = "Float",
+			["Help"] = true	
+		} )
 	end
 } )
 
@@ -180,5 +233,16 @@ hook.Add( "RenderScreenspaceEffects", addonName, function()
 
 		SetMaterial( blue )
 		DrawScreenQuadEx( -blueX / 2, -blueY / 2, width + blueX, height + blueY )
+		
+		RunConsoleCommand("mat_autoexposure_min", pp_scaf_autoexposure_min:GetFloat());
+		RunConsoleCommand("mat_autoexposure_max", pp_scaf_autoexposure_max:GetFloat());
+		RunConsoleCommand("mat_bloom_scalefactor_scalar", pp_scaf_bloom_scalefactor:GetFloat());
+		RunConsoleCommand("mat_bloomscale", pp_scaf_bloomscale:GetFloat());
+		
+		else
+		RunConsoleCommand("mat_autoexposure_min", "0");
+	    	RunConsoleCommand("mat_autoexposure_max", "2");
+	   	RunConsoleCommand("mat_bloom_scalefactor_scalar", "1");
+	  	RunConsoleCommand("mat_bloomscale", "1");
 	end
 end )
