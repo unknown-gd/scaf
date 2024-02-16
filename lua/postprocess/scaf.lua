@@ -14,6 +14,12 @@ local pp_scaf_greeny = CreateClientConVar( "pp_scaf_greeny", "2", true, false, "
 local pp_scaf_bluex = CreateClientConVar( "pp_scaf_bluex", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the X-axis.", 0, 128 )
 local pp_scaf_bluey = CreateClientConVar( "pp_scaf_bluey", "0", true, false, "Mixing of chromatic aberrations in the blue channel along the Y-axis.", 0, 128 )
 
+-- Brightness options
+local mat_autoexposure_min = GetConVar( "mat_autoexposure_min" )
+local mat_autoexposure_max = GetConVar( "mat_autoexposure_max" )
+local mat_bloom_scalefactor_scalar = GetConVar( "mat_bloom_scalefactor_scalar" )
+local mat_bloomscale = GetConVar( "mat_bloomscale" )
+
 list.Set( "PostProcess", "#pp_scaf.name", {
 	["icon"] = "gui/postprocess/scaf.jpg",
 	["convar"] = pp_scaf:GetName(),
@@ -30,8 +36,12 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 					[ pp_scaf_redy:GetName() ] = pp_scaf_redy:GetDefault(),
 					[ pp_scaf_greenx:GetName() ] = pp_scaf_greenx:GetDefault(),
 					[ pp_scaf_greeny:GetName() ] = pp_scaf_greeny:GetDefault(),
+					[ pp_scaf_bluex:GetName() ] = pp_scaf_bluex:GetDefault(),
 					[ pp_scaf_bluey:GetName() ] = pp_scaf_bluey:GetDefault(),
-					[ pp_scaf_bluex:GetName() ] = pp_scaf_bluex:GetDefault()
+					[ mat_autoexposure_min:GetName() ] = mat_autoexposure_min:GetDefault(),
+					[ mat_autoexposure_max:GetName() ] = mat_autoexposure_max:GetDefault(),
+					[ mat_bloom_scalefactor_scalar:GetName() ] = mat_bloom_scalefactor_scalar:GetDefault(),
+					[ mat_bloomscale:GetName() ] = mat_bloomscale:GetDefault()
 				}
 			},
 			["CVars"] = {
@@ -42,7 +52,11 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 				pp_scaf_greenx:GetName(),
 				pp_scaf_greeny:GetName(),
 				pp_scaf_bluey:GetName(),
-				pp_scaf_bluex:GetName()
+				pp_scaf_bluex:GetName(),
+				mat_autoexposure_min:GetName(),
+				mat_autoexposure_max:GetName(),
+				mat_bloom_scalefactor_scalar:GetName(),
+				mat_bloomscale:GetName()
 			}
 		} )
 
@@ -117,6 +131,43 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 			["Max"] = tostring( pp_scaf_bluey:GetMax() ),
 			["Type"] = "Float",
 			["Help"] = true
+		} )
+			
+		-- Brightness options
+		panel:AddControl( "Slider", {
+			["Label"] = "#pp_scaf.autoexposure_min",
+			["Command"] = mat_autoexposure_min:GetName(),
+			["Min"] = tostring( 0 ),
+			["Max"] = tostring( 10 ),
+			["Type"] = "Float",
+			["Help"] = true
+		} )
+		
+		panel:AddControl( "Slider", {
+			["Label"] = "#pp_scaf.autoexposure_max",
+			["Command"] = mat_autoexposure_max:GetName(),
+			["Min"] = tostring( 0 ),
+			["Max"] = tostring( 10 ),
+			["Type"] = "Float",
+			["Help"] = true
+		} )
+		
+		panel:AddControl( "Slider", {
+			["Label"] = "#pp_scaf.bloom_scalefactor",
+			["Command"] = mat_bloom_scalefactor_scalar:GetName(),
+			["Min"] = tostring( 0 ),
+			["Max"] = tostring( 1 ),
+			["Type"] = "Float",
+			["Help"] = true
+		} )
+		
+		panel:AddControl( "Slider", {
+			["Label"] = "#pp_scaf.bloomscale",
+			["Command"] = mat_bloomscale:GetName(),
+			["Min"] = tostring( 0 ),
+			["Max"] = tostring( 1 ),
+			["Type"] = "Float",
+			["Help"] = true	
 		} )
 	end
 } )
