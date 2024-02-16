@@ -134,6 +134,11 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 		} )
 			
 		-- Brightness options
+                panel:ControlHelp(" ")
+		panel:AddControl( "Label", {
+			["Text"] = "#brightness.text"
+		} )
+			
 		panel:AddControl( "Slider", {
 			["Label"] = "#pp_scaf.autoexposure_min",
 			["Command"] = mat_autoexposure_min:GetName(),
