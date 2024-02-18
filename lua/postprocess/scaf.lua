@@ -142,8 +142,8 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 		panel:AddControl( "Slider", {
 			["Label"] = "#pp_scaf.autoexposure_min",
 			["Command"] = mat_autoexposure_min:GetName(),
-			["Min"] = tostring( 0 ),
-			["Max"] = tostring( 10 ),
+			["Min"] = tostring( mat_autoexposure_min:GetMin() or 0 ),
+			["Max"] = tostring( mat_autoexposure_min:GetMax() or 10 ),
 			["Type"] = "Float",
 			["Help"] = true
 		} )
@@ -151,8 +151,8 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 		panel:AddControl( "Slider", {
 			["Label"] = "#pp_scaf.autoexposure_max",
 			["Command"] = mat_autoexposure_max:GetName(),
-			["Min"] = tostring( 0 ),
-			["Max"] = tostring( 10 ),
+			["Min"] = tostring( mat_autoexposure_max:GetMin() or 0 ),
+			["Max"] = tostring( mat_autoexposure_max:GetMax() or 10 ),
 			["Type"] = "Float",
 			["Help"] = true
 		} )
@@ -160,8 +160,8 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 		panel:AddControl( "Slider", {
 			["Label"] = "#pp_scaf.bloom_scalefactor",
 			["Command"] = mat_bloom_scalefactor_scalar:GetName(),
-			["Min"] = tostring( 0 ),
-			["Max"] = tostring( 1 ),
+			["Min"] = tostring( mat_bloom_scalefactor_scalar:GetMin() or 0 ),
+			["Max"] = tostring( mat_bloom_scalefactor_scalar:GetMax() or 2 ),
 			["Type"] = "Float",
 			["Help"] = true
 		} )
@@ -169,8 +169,8 @@ list.Set( "PostProcess", "#pp_scaf.name", {
 		panel:AddControl( "Slider", {
 			["Label"] = "#pp_scaf.bloomscale",
 			["Command"] = mat_bloomscale:GetName(),
-			["Min"] = tostring( 0 ),
-			["Max"] = tostring( 1 ),
+			["Min"] = tostring( mat_bloomscale:GetMin() or 0 ),
+			["Max"] = tostring( mat_bloomscale:GetMax() or 2 ),
 			["Type"] = "Float",
 			["Help"] = true	
 		} )
